@@ -183,8 +183,9 @@ SELECT
     SUM(TotalAmount) AS MonthlyIncome
 FROM Sales
 GROUP BY Month
-ORDER BY Month;
+ORDER BY 3;
 /*The month with the highest number of orders is Genuary 2020 */
+
 
 
 
