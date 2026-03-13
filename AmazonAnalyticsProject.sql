@@ -176,20 +176,6 @@ GROUP BY p.Category, p.Brand
 ORDER BY TotalIncome DESC;
 /* The combination of category/brand which generated the highest total income is Toys & Games/CoreTech */
 
-/* Geographic analysis:
- * In which city we have the maiority of sales */
-SELECT 
-    g.Country,
-    g.City,
-    COUNT(s.OrderID) AS TotalOfOrders,
-    SUM(s.TotalAmount) AS TotalAmountPerCity
-FROM Sales s
-JOIN Geography g ON s.OrderID IN (SELECT OrderID FROM SalesTransactions WHERE City = g.City) 
-GROUP BY g.Country, g.City
-ORDER BY TotalAmountPerCity DESC
-LIMIT 5;
-/* The city of Charlotte generated the highest income */
-
 /* Monthly trend of sales */
 SELECT 
     DATE_FORMAT(OrderDate, '%Y-%m') AS Month,
@@ -199,5 +185,6 @@ FROM Sales
 GROUP BY Month
 ORDER BY Month;
 /*The month with the highest number of orders is Genuary 2020 */
+
 
 
