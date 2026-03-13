@@ -148,9 +148,8 @@ SELECT
     ShippingCost, TotalAmount, PaymentMethod, OrderStatus
 FROM SalesTransactions;
 
-
-/* Customer retention  
- * Who are the top-10 'big spenders' and how much did they order on average*/
+  
+ /* Who are the top-10 'big spenders' and how much did they order on average*/
 SELECT 
     c.CustomerName,
     COUNT(s.OrderID) AS NumberOfOrders,
@@ -200,4 +199,5 @@ FROM Sales
 GROUP BY Month
 ORDER BY Month;
 /*The month with the highest number of orders is Genuary 2020 */
+
 
