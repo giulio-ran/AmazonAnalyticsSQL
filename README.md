@@ -2,7 +2,7 @@
 
 ## Abstract and research questions
 
-
+In this project, a dataset of Amazon Sales was analyzed
 
 
 
