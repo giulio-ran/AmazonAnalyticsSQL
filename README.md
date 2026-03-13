@@ -10,9 +10,9 @@
 ## Project structure
 
 ### 1. Database setup
-- **Database creation**: The project starts by creating a database named 'amazonsalesanalytics'
-- **Landing table creation**: A landing table is created to tsore the raw sales data
-- **Star Schema setup**: various tables have been created, each one describinig a different dimensionof the data; each of these 'descriptive' tables can be linked to the principal 'fact' table through a single join.
+- **Database creation**: The project starts by creating a database named 'amazonsalesanalytics'.
+- **Landing table creation**: A landing table is created to store the raw sales data.
+- **Star Schema setup**: Various tables have been created, each one describinig a different dimension of the data; each of these 'descriptive' tables can be linked to the principal 'fact' table through a single join.
 
 ```sql
 
@@ -163,10 +163,10 @@ SELECT
 FROM SalesTransactions;
 ```
 
-### 2. Business Analysis
-- **Top-10 big spenders**: In this section, I focused on retreiving the top-10 'big spenders', i.e. the customers that spent more on total, also computing the average total spent by order.
-- **Geographic analysis**: Here, I grouped sales by city, and determined the top-5 cities in revenue
-- **Monthly orders**: At last, I retrieved the total orders by month, in order to determine a rank of most profitable months.
+### 2. Business Analysis: Methods
+- **Top-10 big spenders**: In this section, I focused on retrieving the top-10 'big spenders', i.e., the customers that spent the most in total. Also I computed the average total spent per order.
+- **Performance by Category and Brand**: In this combined analysis, I investigated which combination of Category/Brand generated the highest revenue, considering the quantity of items bought and the total income per combination.
+- **Monthly orders**: Finally, I retrieved the total orders by month, in order to determine a rank of the most profitable months.
 
 ```sql
  /* Who are the top-10 'big spenders' and how much did they order on average*/
@@ -196,20 +196,6 @@ GROUP BY p.Category, p.Brand
 ORDER BY TotalIncome DESC;
 /* The combination of category/brand which generated the highest total income is Toys & Games/CoreTech */
 
-/* Geographic analysis:
- * In which city we have the maiority of sales */
-SELECT 
-    g.Country,
-    g.City,
-    COUNT(s.OrderID) AS TotalOfOrders,
-    SUM(s.TotalAmount) AS TotalAmountPerCity
-FROM Sales s
-JOIN Geography g ON s.OrderID IN (SELECT OrderID FROM SalesTransactions WHERE City = g.City) 
-GROUP BY g.Country, g.City
-ORDER BY TotalAmountPerCity DESC
-LIMIT 5;
-/* The city of Charlotte generated the highest income */
-
 /* Monthly trend of sales */
 SELECT 
     DATE_FORMAT(OrderDate, '%Y-%m') AS Month,
@@ -220,7 +206,18 @@ GROUP BY Month
 ORDER BY Month;
 /*The month with the highest number of orders is Genuary 2020 */
 ```
+### 3. Business Analysis: Results
+
+- **Top-10 big spenders**: We can observe that, in the top-3 of the 'big spenders', the number of orders is quite high (10,9,6 in descending order), while the average amount per sale is relatively modest; this means that, generally, quality customers generate a high revenue by placing several medium orders, rather than a few big orders.
+- **Performance by Category-Brand**: The top-3 Category/Brand couples were, in order, Toys & Games/CoreTech, Book/CoreTech and Sports & Outdoors/Apex. First off, we can observe that the CoreTech brand generally produces a high income. Also, as shown in the SingleProductsSold column, the total quantity is generally higher than the last couples of Category/Brand (higher than 5,000), reminding us again that, as we have seen previously, a higher income is generally composed of several medium-sized orders.
+- **Monthly trend of sales**: We can observe that, within the top-5 months by income, we have a quite high NumberOfOrders variable, highlighting the already mentioned trend whereby high incomes correspond to several medium-sized orders.
 
 
-We can observe that, in the top-3 of the big spenders, the number of orders is quite high (10,9,6 in descending order), while the average amount per sale is relatively modest, meaning that generally quality customers generate a high revenue by placing several medium order, rather than few big orders.
+
+
+
+
+
+
+
 
