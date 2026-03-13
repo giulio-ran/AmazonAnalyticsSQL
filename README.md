@@ -2,9 +2,7 @@
 
 ## Abstract and research questions
 
-In this project, a dataset of Amazon Sales was analyzed
-
-
+In this project, a dataset of Amazon Sales was analyzed using the SQL language. A star schema database was created in order to store the data, and different variables were analyzed to extract knowledge with respect to the best-performing customers, categories, brands and time periods. In particular: (1) the most profitable customers placed, on average, a higher quantity of medium-sized orders; (2) the top 3 Category/Brand couples were, in order, Toys & Games/CoreTech, Books/CoreTech, and Sports & Outdoors/Apex, and the average quantity of items bought for these couples was higher than the others (higher than 5,000); (3) the most profitable months registered a higher number of orders, remarking on the observed tendency of multiple orders of medium size.
 
 
 ## Project structure
